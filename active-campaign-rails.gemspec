@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = ActiveCampaignRails::VERSION
   spec.authors       = ["Eky Fauzi"]
   spec.email         = ["ekyfauzi@hotmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Simple rails wrapper ActiveCampaign API}
+  spec.description   = %q{See http://www.activecampaign.com/api/overview.php for more information}
   spec.homepage      = ""
   spec.license       = "MIT"
 
