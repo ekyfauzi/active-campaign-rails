@@ -1,6 +1,6 @@
-# Active::Campaign::Rails
+# ActiveCampaignRails
 
-TODO: Write a gem description
+Simple rails wrapper for ActiveCampaign API
 
 ## Installation
 
