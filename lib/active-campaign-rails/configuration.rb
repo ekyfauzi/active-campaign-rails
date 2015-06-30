@@ -1,7 +1,7 @@
 module ActiveCampaignRails
 
   class Configuration
-    attr_accessor :api_key, :log_level
+    attr_accessor :api_endpoint, :api_key, :api_output
 
     def initialize
       self.api_endpoint = nil
