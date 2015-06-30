@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'active/campaign/rails/version'
+require 'active-campaign-rails/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "active-campaign-rails"
-  spec.version       = Active::Campaign::Rails::VERSION
+  spec.version       = ActiveCampaignRails::VERSION
   spec.authors       = ["Eky Fauzi"]
   spec.email         = ["ekyfauzi@hotmail.com"]
   spec.summary       = %q{TODO: Write a short summary. Required.}
