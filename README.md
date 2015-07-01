@@ -1,6 +1,6 @@
 # ActiveCampaignRails
 
-Simple rails wrapper for ActiveCampaign API
+Simple gem for ActiveCampaign API wrapper
 
 ## Installation
 
@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-Read their [API documentation](http://www.activecampaign.com/api/overview.php)for how to use this gem.
+Read their [API documentation](http://www.activecampaign.com/api/overview.php) for how to use this gem.
 
 ```ruby
 # To setup the active_campaign
@@ -28,21 +28,22 @@ active_campaign = ActiveCampaign.new(
         api_endpoint: 'YOUR-ENDPOINT', # e.g. 'https://yourendpoint.api-us1.com'
         api_key: 'YOUR-API-KEY') # e.g. 'a4e60a1ba200595d5cc37ede5732545184165e'
 
-# After connected, you can call Active Campaign API like this:
+# After connected, you can call ActiveCampaign API like this:
 
-# To fetch your Active Campaign account data
+# To fetch your ActiveCampaign account data
 active_campaign.account_view
 
 # To fetch all lists
 active_campaign.list_list ids: 'all'
 
-# NOTE: For view all available API please visit http://www.activecampaign.com/api/overview.php
- 
+
 ```
+
+To view all available API please visit http://www.activecampaign.com/api/overview.php
 
 ## Response
 
-Here's an example JSON response for `active_campaign.list_list ids: 'all'` 
+Here's an example JSON response for `active_campaign.list_list ids: 'all'`
 
 ```ruby
 {
