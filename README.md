@@ -36,6 +36,13 @@ active_campaign.account_view
 # To fetch all lists
 active_campaign.list_list ids: 'all'
 
+# To add new contact
+active_campaign.contact_add(
+      email: 'john_doe@example.com',
+      first_name: 'John',
+      last_name: 'Doe',
+      phone: '+6287712314132')
+
 
 ```
 
