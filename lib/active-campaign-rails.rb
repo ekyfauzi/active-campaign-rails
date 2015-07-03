@@ -29,14 +29,17 @@ class ActiveCampaign
       url_params = (args.present?) ? args.first.map{|k,v| "#{k}=#{v}"}.join('su&') : nil
       api_url = (url_params.present?) ? "#{api_url}&#{url_params}" : api_url
       response = Net::HTTP.get(URI.parse("#{api_url}"))
+      
+      return response
 
     when 'post'
 
       response = Net::HTTP.post_form(URI.parse("#{api_url}"), args.first)
 
+      return response.body
+      
     end
     
-    return response
 
   end
 
