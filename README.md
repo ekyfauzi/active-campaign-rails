@@ -2,6 +2,8 @@
 
 Simple gem for ActiveCampaign API wrapper
 
+[![Build Status](https://semaphoreci.com/api/v1/ekyfauzi/active-campaign-rails/branches/master/badge.svg)](https://semaphoreci.com/ekyfauzi/active-campaign-rails)
+
 ## Installation
 
 Add this line to your application's Gemfile:
