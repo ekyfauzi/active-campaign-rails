@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["ekyfauzi@hotmail.com"]
   spec.summary       = %q{Simple rails wrapper for ActiveCampaign API}
   spec.description   = %q{See http://www.activecampaign.com/api/overview.php for more information}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/ekyfauzi/active-campaign-rails"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec"
+  spec.add_development_dependency "rspec", "~> 0"
   spec.required_ruby_version = '>= 2.0.0'
 
 end
