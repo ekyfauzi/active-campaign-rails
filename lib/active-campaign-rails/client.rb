@@ -81,8 +81,8 @@ module Client
       deal_tasktype_edit: { method: 'post' },
 
       # Form
-      # form_getforms: { method: 'get' },
-      # form_html: { method: 'get' },
+      form_getforms: { method: 'get' },
+      form_html: { method: 'get' },
 
       # Group
       group_add: { method: 'post' },

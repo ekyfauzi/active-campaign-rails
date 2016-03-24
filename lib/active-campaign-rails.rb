@@ -24,7 +24,7 @@ class ActiveCampaign
   def method_missing(api_action, *args, &block)
 
     # Generate api_url
-    api_url = generate_api_url()
+    api_url = generate_api_url(api_action)
 
     # Check method for api_action given
     case action_calls[api_action][:method]
@@ -60,7 +60,7 @@ class ActiveCampaign
   end
 
   private
-  def generate_api_url
+  def generate_api_url api_action
     return "#{@api_endpoint}/admin/api.php?api_key=#{@api_key}&api_action=#{api_action.to_s}&api_output=#{@api_output}"
   end
 
