@@ -4,7 +4,7 @@ require "active-campaign-rails/client"
 class ActiveCampaign
 
   # Makes the Client's methods available to an instance of the ActiveCampaign class
-  include Client
+  include ActiveCampaign::Client
 
   attr_reader :api_endpoint, :api_key
 
