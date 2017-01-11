@@ -141,6 +141,9 @@ class ActiveCampaign
         track_site_whitelist_delete: { method: 'post' },
         track_event_add: { method: 'post' },
 
+        # Tag
+        tags_list: { method: 'get'},
+
         # User
         user_add: { method: 'post' },
         user_delete: { method: 'post' },
