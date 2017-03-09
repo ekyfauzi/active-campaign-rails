@@ -139,15 +139,15 @@ class ActiveCampaign
         track_site_status_edit:      { method: 'post',   path: '/2/track/site'  },
         track_site_whitelist_add:    { method: 'post',   path: '/2/track/site'  },
         track_site_whitelist_delete: { method: 'delete', path: '/2/track/site'  },
-        track_event_add:             { method: 'post',   endpoint: 'https://trackcmp.net', path: '/event', authenticate: false },
+        track_event_add:             { method: 'post',   endpoint: 'https://trackcmp.net', path: '/event' },
 
         # Tag
-        tags_list: { method: 'get'},
+        tags_list: { method: 'get' },
 
         # User
         user_add:           { method: 'post' },
-        user_delete:        { method: 'get' },
-        user_delete_list:   { method: 'get' },
+        user_delete:        { method: 'get'  },
+        user_delete_list:   { method: 'get'  },
         user_edit:          { method: 'post' },
         user_list:          { method: 'get'  },
         user_me:            { method: 'get'  },
