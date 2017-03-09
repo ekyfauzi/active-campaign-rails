@@ -79,11 +79,6 @@ class ActiveCampaign
   end
 
   private
-
-    def generate_api_key api_action
-      action_calls[api_action][:authentication] == false ? nil : @api_key
-    end
-
     def generate_api_url api_action
       host = action_calls[api_action][:endpoint] || @api_endpoint
       path = action_calls[api_action][:path]     || '/admin/api.php'
