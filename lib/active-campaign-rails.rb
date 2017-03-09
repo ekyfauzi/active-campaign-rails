@@ -37,31 +37,52 @@ class ActiveCampaign
       api_url = (api_params.present?) ? "#{api_url}&#{api_params}" : api_url
 
       # Make a call to API server with GET method
-      response = Net::HTTP.get(URI.parse("#{api_url}"))
-      
+      response = RestClient.get(api_url)
+
       # Return response from API server
       # Default to JSON
-      return response
+      return response.body
 
     when 'post'
 
       # API parameters for POST method
       api_params = args.first
 
+      # For event tracking the visit param must have a json value
+      if visit = api_params[:visit]
+        api_params[:visit] = visit.to_json if visit.is_a?(Hash)
+      end
+
       # Make a call to API server with POST method
-      response = Net::HTTP.post_form(URI.parse("#{api_url}"), api_params)
+      response = RestClient.post(api_url, api_params)
 
       # Return response from API server
       # Default to JSON
       return response.body
-      
+
+    when 'delete'
+
+      # API parameters for DELETE method
+      api_params = args.first.merge(api_key: @api_key, api_output: @api_output)
+
+      api_url = "#{action_calls[api_action][:endpoint] || @api_endpoint}#{action_calls[api_action][:path] || '/admin/api.php'}"
+
+      # Make a call to API server with DELETE method
+      response = RestClient::Request.execute(method: :delete, url: api_url, headers: { params: api_params })
+
+      # Return response from API server
+      # Default to JSON
+      return response.body
+
     end
 
   end
 
   private
-  def generate_api_url api_action
-    return "#{@api_endpoint}/admin/api.php?api_key=#{@api_key}&api_action=#{api_action.to_s}&api_output=#{@api_output}"
-  end
+    def generate_api_url api_action
+      host = action_calls[api_action][:endpoint] || @api_endpoint
+      path = action_calls[api_action][:path]     || '/admin/api.php'
 
+      "#{host}#{path}?api_key=#{@api_key}&api_action=#{api_action.to_s}&api_output=#{@api_output}"
+    end
 end
