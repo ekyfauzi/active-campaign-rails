@@ -37,8 +37,8 @@ class ActiveCampaign
       api_url = (api_params.present?) ? "#{api_url}&#{api_params}" : api_url
 
       # Make a call to API server with GET method
-      response = Net::HTTP.get(URI.parse("#{api_url}"))
-      
+      response = RestClient.post(api_url)
+
       # Return response from API server
       # Default to JSON
       return response
@@ -49,19 +49,38 @@ class ActiveCampaign
       api_params = args.first
 
       # Make a call to API server with POST method
-      response = Net::HTTP.post_form(URI.parse("#{api_url}"), api_params)
+      response = RestClient.post(api_url, api_params)
 
       # Return response from API server
       # Default to JSON
       return response.body
-      
+
+    when 'delete'
+
+      # API parameters for DELETE method
+      api_params = args.first.merge(api_key: generate_api_key(api_action), api_output: @api_output)
+
+      # Make a call to API server with DELETE method
+      response = RestClient::Request.execute(method: :delete, url: api_url, headers: { params: api_params })
+
+      # Return response from API server
+      # Default to JSON
+      return response.body
+
     end
 
   end
 
   private
-  def generate_api_url api_action
-    return "#{@api_endpoint}/admin/api.php?api_key=#{@api_key}&api_action=#{api_action.to_s}&api_output=#{@api_output}"
-  end
 
+    def generate_api_key api_action
+      action_calls[api_action][:authentication] == false ? @api_key : nil
+    end
+
+    def generate_api_url api_action
+      host = action_calls[api_action][:endpoint] || @api_endpoint
+      path = action_calls[api_action][:path]     || '/admin/api.php'
+
+      "#{host}#{path}?api_key=#{generate_api_key(api_action)}&api_action=#{api_action.to_s}&api_output=#{@api_output}"
+    end
 end
