@@ -1,5 +1,6 @@
 require "active-campaign-rails/version"
 require "active-campaign-rails/client"
+require 'rest-client'
 
 class ActiveCampaign
 
@@ -16,10 +17,10 @@ class ActiveCampaign
     end
 
     # Set default api_output to json if not set
-    @api_output = 'json' if @api_output.blank?
+    @api_output = 'json' if @api_output == nil
 
   end
-
+  
 
   def method_missing(api_action, *args, &block)
 
@@ -31,10 +32,10 @@ class ActiveCampaign
     when 'get'
 
       # Generate API parameter from given argument
-      api_params = (args.present?) ? args.first.map{|k,v| "#{k}=#{v}"}.join('&') : nil
+      api_params = (args.any?) ? args.first.map{|k,v| "#{k}=#{v}"}.join('&') : nil
 
       # Join API url and API parameters
-      api_url = (api_params.present?) ? "#{api_url}&#{api_params}" : api_url
+      api_url = api_params ? "#{api_url}&#{api_params}" : api_url
 
       # Make a call to API server with GET method
       response = RestClient.get(api_url)
