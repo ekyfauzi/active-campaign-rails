@@ -56,6 +56,7 @@ class ActiveCampaign
 
       # Make a call to API server with POST method
       response = RestClient.post(api_url, api_params)
+<<<<<<< HEAD
 
       # Return response from API server
       # Default to JSON
@@ -70,11 +71,30 @@ class ActiveCampaign
 
       # Make a call to API server with DELETE method
       response = RestClient::Request.execute(method: :delete, url: api_url, headers: { params: api_params })
+=======
+>>>>>>> 85a5e905ee4dcd99bcb4acfcff62c4ca282fb5c9
 
       # Return response from API server
       # Default to JSON
       return response.body
 
+<<<<<<< HEAD
+=======
+    when 'delete'
+
+      # API parameters for DELETE method
+      api_params = args.first.merge(api_key: @api_key, api_output: @api_output)
+
+      api_url = "#{action_calls[api_action][:endpoint] || @api_endpoint}#{action_calls[api_action][:path] || '/admin/api.php'}"
+
+      # Make a call to API server with DELETE method
+      response = RestClient::Request.execute(method: :delete, url: api_url, headers: { params: api_params })
+
+      # Return response from API server
+      # Default to JSON
+      return response.body
+
+>>>>>>> 85a5e905ee4dcd99bcb4acfcff62c4ca282fb5c9
     end
 
   end
