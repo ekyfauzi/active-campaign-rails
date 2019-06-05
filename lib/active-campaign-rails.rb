@@ -16,11 +16,12 @@ class ActiveCampaign
       instance_variable_set("@#{k}", v) unless v.nil?
     end
 
-    # Set default api_output to json if not set
-    @api_output = 'json' if @api_output == nil
+    # Set defaults
+    @api_output  ||= 'json'
+    @ssl_version ||= :TLSv1_2
 
   end
-  
+
 
   def method_missing(api_action, *args, &block)
 
@@ -32,13 +33,10 @@ class ActiveCampaign
     when 'get'
 
       # Generate API parameter from given argument
-      api_params = (args.any?) ? args.first.map{|k,v| "#{k}=#{v}"}.join('&') : nil
-
-      # Join API url and API parameters
-      api_url = api_params ? "#{api_url}&#{api_params}" : api_url
+      api_params = args.first
 
       # Make a call to API server with GET method
-      response = RestClient.get(api_url)
+      response = RestClient::Request.execute(method: :get, url: api_url, headers: { params: api_params }, ssl_version: @ssl_version)
 
       # Return response from API server
       # Default to JSON
@@ -55,7 +53,7 @@ class ActiveCampaign
       end
 
       # Make a call to API server with POST method
-      response = RestClient.post(api_url, api_params)
+      response = RestClient::Request.execute(method: :post, url: api_url, payload: api_params, ssl_version: @ssl_version)
 
       # Return response from API server
       # Default to JSON
@@ -69,7 +67,7 @@ class ActiveCampaign
       api_url = "#{action_calls[api_action][:endpoint] || @api_endpoint}#{action_calls[api_action][:path] || '/admin/api.php'}"
 
       # Make a call to API server with DELETE method
-      response = RestClient::Request.execute(method: :delete, url: api_url, headers: { params: api_params })
+      response = RestClient::Request.execute(method: :delete, url: api_url, headers: { params: api_params }, ssl_version: @ssl_version)
 
       # Return response from API server
       # Default to JSON
